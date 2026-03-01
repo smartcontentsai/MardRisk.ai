@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" x-data="siteData" :class="{ 'dark': darkMode }">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MardRisk AI | Strategic Life Intelligence</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            primary: '#6366f1',
+                            safe: '#10b981',
+                            warning: '#f59e0b',
+                            crisis: '#ef4444',
+                            dark: '#020617'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 4s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        [x-cloak] { display: none !important; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .dark .glass-card { background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.05); }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-brand-dark text-slate-900 dark:text-slate-100 transition-colors duration-500">
+
+    <nav class="fixed w-full z-[100] glass border-b border-white/5">
+        <div class="container mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
+            <div class="flex items-center space-x-2 md:space-x-3">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-brand-primary rounded-lg flex items-center justify-center shadow-lg">
+                    <i class="fa-solid fa-brain text-white text-sm md:text-base"></i>
+                </div>
+                <span class="text-lg md:text-2xl font-800 tracking-tighter uppercase">MardRisk <span class="text-brand-primary">AI</span></span>
+            </div>
+            
+            <div class="flex items-center space-x-2 md:space-x-6">
+                <div class="relative" x-data="{ open: false }">
+                    <button @click="open = !open" class="flex items-center space-x-1 font-bold text-xs md:text-sm uppercase p-2 hover:bg-white/5 rounded-lg transition">
+                        <span x-text="lang"></span> <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div x-show="open" @click.away="open = false" x-cloak class="absolute mt-2 right-0 w-28 bg-white dark:bg-slate-800 rounded-xl shadow-2xl py-2 border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <button @click="lang = 'en'; open = false" class="w-full text-left px-4 py-2 hover:bg-brand-primary hover:text-white transition text-sm">🇺🇸 EN</button>
+                        <button @click="lang = 'hy'; open = false" class="w-full text-left px-4 py-2 hover:bg-brand-primary hover:text-white transition text-sm">🇦🇲 HY</button>
+                        <button @click="lang = 'ru'; open = false" class="w-full text-left px-4 py-2 hover:bg-brand-primary hover:text-white transition text-sm">🇷🇺 RU</button>
+                    </div>
+                </div>
+
+                <button @click="darkMode = !darkMode" class="p-2 text-sm md:text-lg hover:text-brand-primary transition">
+                    <i class="fa-solid" :class="darkMode ? 'fa-sun text-yellow-400' : 'fa-moon'"></i>
+                </button>
+                <a href="https://t.me/MardRisk_bot" class="hidden sm:block bg-brand-primary text-white px-5 py-2 rounded-full font-bold text-sm hover:scale-105 transition" x-text="t[lang].navCta"></a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex items-center pt-20 pb-12 overflow-hidden">
+        <div class="container mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
+            <div>
+                <div class="flex items-center space-x-2 mb-4 md:mb-6">
+                    <span class="flex h-2 w-2 md:h-3 md:w-3 relative">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-crisis opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 bg-brand-crisis"></span>
+                    </span>
+                    <span class="text-brand-crisis font-bold uppercase tracking-widest text-[10px] md:text-xs" x-text="t[lang].crisisStatus"></span>
+                </div>
+                <h1 class="text-3xl md:text-5xl lg:text-7xl font-800 mb-6 md:mb-8 tracking-tighter leading-tight" x-html="t[lang].heroTitle"></h1>
+                <p class="text-base md:text-xl text-slate-500 dark:text-slate-400 mb-8 md:mb-10 leading-relaxed max-w-lg" x-text="t[lang].heroSub"></p>
+                
+                <div class="glass-card p-4 md:p-6 rounded-2xl md:rounded-[32px] border-l-4 border-brand-crisis shadow-2xl bg-white dark:bg-slate-900/80">
+                    <div class="flex items-center justify-between mb-4 border-b border-black/5 dark:border-white/5 pb-2">
+                        <span class="font-bold text-[10px] opacity-50" x-text="t[lang].intTitle"></span>
+                        <span class="text-[9px] bg-brand-crisis/20 text-brand-crisis px-2 py-0.5 rounded uppercase" x-text="t[lang].active"></span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-7 h-7 md:w-8 md:h-8 rounded bg-slate-200 dark:bg-slate-700 flex-shrink-0 flex items-center justify-center text-[10px] font-bold">USER</div>
+                            <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl rounded-tl-none text-xs md:text-sm opacity-90" x-text="t[lang].userMsg"></div>
+                        </div>
+                        <div class="flex items-start space-x-3 flex-row-reverse space-x-reverse">
+                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-brand-primary flex-shrink-0 flex items-center justify-center shadow-lg text-white"><i class="fa-solid fa-robot text-xs md:text-base"></i></div>
+                            <div class="bg-brand-primary text-white p-3 md:p-4 rounded-xl rounded-tr-none text-xs md:text-sm shadow-xl">
+                                <div class="flex items-center space-x-2 mb-1 md:mb-2 font-800">
+                                    <i class="fa-solid fa-triangle-exclamation animate-pulse"></i>
+                                    <span x-text="t[lang].aiRiskHeader"></span>
+                                </div>
+                                <p class="leading-relaxed" x-text="t[lang].aiResponse"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative flex justify-center py-10 lg:py-0">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-[450px] lg:h-[450px] rounded-full border-[10px] md:border-[20px] border-slate-200 dark:border-slate-800 flex items-center justify-center">
+                    <div class="absolute inset-0 rounded-full border-[10px] md:border-[20px] border-brand-crisis border-t-transparent border-l-transparent rotate-[45deg]"></div>
+                    <div class="text-center animate-float">
+                        <span class="text-6xl md:text-8xl lg:text-9xl font-800 text-brand-crisis">80<span class="text-2xl md:text-4xl">%</span></span>
+                        <p class="text-xs md:text-xl font-bold opacity-60 uppercase tracking-widest mt-2" x-text="t[lang].riskLabel"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 md:py-32 bg-slate-100 dark:bg-slate-950/40">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-3xl md:text-5xl font-800 text-center mb-16 md:mb-20 tracking-tight" x-text="t[lang].matrixTitle"></h2>
+            <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                <template x-for="level in t[lang].levels" :key="level.title">
+                    <div class="glass-card p-6 md:p-10 rounded-[30px] md:rounded-[40px] transition group border-b-4 hover:scale-[1.02]" :class="level.border">
+                        <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center mb-6 font-800 text-lg md:text-xl" :class="level.iconBg">
+                            <span x-text="level.id" :class="level.text"></span>
+                        </div>
+                        <h4 class="text-xl md:text-2xl font-800 mb-4" :class="level.text" x-text="level.title"></h4>
+                        <p class="text-sm md:text-base opacity-60 leading-relaxed" x-text="level.desc"></p>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 md:py-20 border-t border-white/5 text-center">
+        <div class="container mx-auto px-4">
+            <p class="text-sm md:text-base opacity-50 mb-4" x-text="t[lang].footerDesc"></p>
+            <div class="flex justify-center space-x-6 mb-8 opacity-60">
+                <a href="https://t.me/mardrisk_bot" class="hover:text-brand-primary transition text-xl"><i class="fa-brands fa-telegram"> </i></a>
+                <a href="#" class="hover:text-brand-primary transition text-xl"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+            <p class="text-[10px] md:text-xs opacity-30">© 2026 MardRisk Systems. Powered by SmartContentAI.</p>
+        </div>
+    </footer>
+
+    <script src="script.js">
+   
+    </script>
+</body>
+</html>
