@@ -1,155 +1,447 @@
-<!DOCTYPE html>
-<html lang="en" x-data="siteData" :class="{ 'dark': darkMode }">
+<!doctype html>
+<html lang="hy">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MardRisk AI | Strategic Life Intelligence</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            primary: '#6366f1',
-                            safe: '#10b981',
-                            warning: '#f59e0b',
-                            crisis: '#ef4444',
-                            dark: '#020617'
-                        }
-                    },
-                    animation: {
-                        'float': 'float 4s ease-in-out infinite',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        [x-cloak] { display: none !important; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .dark .glass-card { background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.05); }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MardRisk AI — Ֆինանսական Ռիսկի Օգնական Telegram-ում</title>
+  <meta name="description" content="MardRisk AI — Telegram բոտ, որը վերլուծում է ծախսերը, հաշվարկում ռիսկ սքոր, սովորեցնում ֆինանսական գրագիտություն և արգելակում վտանգավոր գնումները։" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-slate-50 dark:bg-brand-dark text-slate-900 dark:text-slate-100 transition-colors duration-500">
 
-    <nav class="fixed w-full z-[100] glass border-b border-white/5">
-        <div class="container mx-auto px-4 md:px-6 h-16 md:h-20 flex justify-between items-center">
-            <div class="flex items-center space-x-2 md:space-x-3">
-                <div class="w-8 h-8 md:w-10 md:h-10 bg-brand-primary rounded-lg flex items-center justify-center shadow-lg">
-                    <i class="fa-solid fa-brain text-white text-sm md:text-base"></i>
-                </div>
-                <span class="text-lg md:text-2xl font-800 tracking-tighter uppercase">MardRisk <span class="text-brand-primary">AI</span></span>
-            </div>
-            
-            <div class="flex items-center space-x-2 md:space-x-6">
-                <div class="relative" x-data="{ open: false }">
-                    <button @click="open = !open" class="flex items-center space-x-1 font-bold text-xs md:text-sm uppercase p-2 hover:bg-white/5 rounded-lg transition">
-                        <span x-text="lang"></span> <i class="fa-solid fa-chevron-down text-[10px]"></i>
-                    </button>
-                    <div x-show="open" @click.away="open = false" x-cloak class="absolute mt-2 right-0 w-28 bg-white dark:bg-slate-800 rounded-xl shadow-2xl py-2 border border-slate-200 dark:border-white/10 overflow-hidden">
-                        <button @click="lang = 'en'; open = false" class="w-full text-left px-4 py-2 hover:bg-brand-primary hover:text-white transition text-sm">🇺🇸 EN</button>
-                        <button @click="lang = 'hy'; open = false" class="w-full text-left px-4 py-2 hover:bg-brand-primary hover:text-white transition text-sm">🇦🇲 HY</button>
-                        <button @click="lang = 'ru'; open = false" class="w-full text-left px-4 py-2 hover:bg-brand-primary hover:text-white transition text-sm">🇷🇺 RU</button>
-                    </div>
-                </div>
+<body>
+  <!-- Top progress bar -->
+  <div class="progress" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div>
 
-                <button @click="darkMode = !darkMode" class="p-2 text-sm md:text-lg hover:text-brand-primary transition">
-                    <i class="fa-solid" :class="darkMode ? 'fa-sun text-yellow-400' : 'fa-moon'"></i>
-                </button>
-                <a href="https://t.me/MardRisk_bot" class="hidden sm:block bg-brand-primary text-white px-5 py-2 rounded-full font-bold text-sm hover:scale-105 transition" x-text="t[lang].navCta"></a>
+  <!-- Header -->
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a class="brand" href="#top" aria-label="MardRisk AI">
+        <span class="brand__logo" aria-hidden="true">MR</span>
+        <span class="brand__text">
+          <span class="brand__name">MardRisk AI</span>
+          <span class="brand__tag">Ֆինանսական Ռիսկի Օգնական</span>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <a class="nav__link" href="#features">Հնարավորություններ</a>
+        <a class="nav__link" href="#how">Ինչպես է աշխատում</a>
+        <a class="nav__link" href="#guard">Արգելող համակարգ</a>
+        <a class="nav__link" href="#faq">FAQ</a>
+        <a class="nav__cta btn btn--sm" href="#cta">Միանալ</a>
+      </nav>
+
+      <div class="header__actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Փոխել թեման (լույս/մութ)">
+          <span class="icon" aria-hidden="true">☾</span>
+        </button>
+        <button class="menu-btn" id="menuBtn" aria-label="Բացել մենյուն" aria-expanded="false" aria-controls="mobileMenu">
+          <span class="menu-btn__lines" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="mobile" id="mobileMenu" hidden>
+      <div class="container mobile__inner">
+        <a class="mobile__link" href="#features">Հնարավորություններ</a>
+        <a class="mobile__link" href="#how">Ինչպես է աշխատում</a>
+        <a class="mobile__link" href="#guard">Արգելող համակարգ</a>
+        <a class="mobile__link" href="#faq">FAQ</a>
+        <a class="btn btn--full" href="#cta">Միանալ Telegram-ում</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <div class="pill">
+            <span class="pill__dot" aria-hidden="true"></span>
+            Telegram-ում աշխատող ֆինանսական օգնական
+          </div>
+
+          <h1 class="hero__title">
+            Վերլուծիր ծախսերդ, հաշվարկիր <span class="accent">Risk Score</span>,
+            ու արգելակիր վտանգավոր գնումները։
+          </h1>
+
+          <p class="hero__desc">
+            RiskMard AI-ը օգնում է մարդկանց ֆինանսական գրագիտության մեջ՝
+            պահելով տվյալներ, ցույց տալով վիճակագրություն, տալով AI խորհուրդներ և
+            “BLOCK/WARN” guardrails՝ օրինակ iPhone 17-ի նման թանկ գնումների համար, երբ ռիսկը բարձր է։
+          </p>
+
+          <div class="hero__actions">
+            <!-- Փոխիր այստեղ քո բոտի հղումը -->
+            <a class="btn btn--primary" id="botLinkTop" href="https://t.me/mardrisk_bot" target="_blank" rel="noopener">
+              Բացել Telegram-ում
+            </a>
+            <a class="btn btn--ghost" href="#how">Դիտել ինչպես է աշխատում</a>
+          </div>
+
+          <div class="hero__stats">
+            <div class="stat">
+              <div class="stat__num">30 օր</div>
+              <div class="stat__label">վիճակագրություն</div>
             </div>
+            <div class="stat">
+              <div class="stat__num">0–100</div>
+              <div class="stat__label">Risk Score</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num">BLOCK/WARN</div>
+              <div class="stat__label">գնումների guardrails</div>
+            </div>
+          </div>
         </div>
-    </nav>
 
-    <section class="relative min-h-screen flex items-center pt-20 pb-12 overflow-hidden">
-        <div class="container mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
-            <div>
-                <div class="flex items-center space-x-2 mb-4 md:mb-6">
-                    <span class="flex h-2 w-2 md:h-3 md:w-3 relative">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-crisis opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 bg-brand-crisis"></span>
-                    </span>
-                    <span class="text-brand-crisis font-bold uppercase tracking-widest text-[10px] md:text-xs" x-text="t[lang].crisisStatus"></span>
-                </div>
-                <h1 class="text-3xl md:text-5xl lg:text-7xl font-800 mb-6 md:mb-8 tracking-tighter leading-tight" x-html="t[lang].heroTitle"></h1>
-                <p class="text-base md:text-xl text-slate-500 dark:text-slate-400 mb-8 md:mb-10 leading-relaxed max-w-lg" x-text="t[lang].heroSub"></p>
-                
-                <div class="glass-card p-4 md:p-6 rounded-2xl md:rounded-[32px] border-l-4 border-brand-crisis shadow-2xl bg-white dark:bg-slate-900/80">
-                    <div class="flex items-center justify-between mb-4 border-b border-black/5 dark:border-white/5 pb-2">
-                        <span class="font-bold text-[10px] opacity-50" x-text="t[lang].intTitle"></span>
-                        <span class="text-[9px] bg-brand-crisis/20 text-brand-crisis px-2 py-0.5 rounded uppercase" x-text="t[lang].active"></span>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="flex items-start space-x-3">
-                            <div class="w-7 h-7 md:w-8 md:h-8 rounded bg-slate-200 dark:bg-slate-700 flex-shrink-0 flex items-center justify-center text-[10px] font-bold">USER</div>
-                            <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl rounded-tl-none text-xs md:text-sm opacity-90" x-text="t[lang].userMsg"></div>
-                        </div>
-                        <div class="flex items-start space-x-3 flex-row-reverse space-x-reverse">
-                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-brand-primary flex-shrink-0 flex items-center justify-center shadow-lg text-white"><i class="fa-solid fa-robot text-xs md:text-base"></i></div>
-                            <div class="bg-brand-primary text-white p-3 md:p-4 rounded-xl rounded-tr-none text-xs md:text-sm shadow-xl">
-                                <div class="flex items-center space-x-2 mb-1 md:mb-2 font-800">
-                                    <i class="fa-solid fa-triangle-exclamation animate-pulse"></i>
-                                    <span x-text="t[lang].aiRiskHeader"></span>
-                                </div>
-                                <p class="leading-relaxed" x-text="t[lang].aiResponse"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="hero__visual" aria-label="Bot preview">
+          <div class="phone">
+            <div class="phone__top">
+              <span class="phone__pill" aria-hidden="true"></span>
+              <span class="phone__dot" aria-hidden="true"></span>
             </div>
 
-            <div class="relative flex justify-center py-10 lg:py-0">
-                <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-[450px] lg:h-[450px] rounded-full border-[10px] md:border-[20px] border-slate-200 dark:border-slate-800 flex items-center justify-center">
-                    <div class="absolute inset-0 rounded-full border-[10px] md:border-[20px] border-brand-crisis border-t-transparent border-l-transparent rotate-[45deg]"></div>
-                    <div class="text-center animate-float">
-                        <span class="text-6xl md:text-8xl lg:text-9xl font-800 text-brand-crisis">80<span class="text-2xl md:text-4xl">%</span></span>
-                        <p class="text-xs md:text-xl font-bold opacity-60 uppercase tracking-widest mt-2" x-text="t[lang].riskLabel"></p>
-                    </div>
-                </div>
+            <div class="chat">
+              <div class="chat__bubble chat__bubble--bot">
+                Բարև 👋 Սկսենք /setup-ից։ Օրինակ՝ <b>/setup 350000 50000 1200000</b>
+              </div>
+              <div class="chat__bubble chat__bubble--user">
+                /setup 350000 50000 1200000
+              </div>
+              <div class="chat__bubble chat__bubble--bot">
+                ✅ Պահված է։ Հիմա կարող ես ավելացնել ծախս՝ <b>2500 սնունդ</b>
+              </div>
+              <div class="chat__bubble chat__bubble--user">
+                600000 iPhone 17
+              </div>
+              <div class="chat__bubble chat__bubble--bot chat__bubble--danger">
+                ⛔ BLOCK — Ռիսկ սքորը բարձր է (82/100) և գնումը ոչ պարտադիր է։
+                Խորհուրդ՝ նախ նվազեցրու պարտքը և ստեղծիր 1–2 ամսվա բուֆեր։
+              </div>
+
+              <div class="chat__footer">
+                <span class="kbd">/risk</span>
+                <span class="kbd">/buy</span>
+                <span class="kbd">/stats</span>
+                <span class="kbd">AI</span>
+              </div>
             </div>
+          </div>
+
+          <div class="glow" aria-hidden="true"></div>
         </div>
+      </div>
     </section>
 
-    <section class="py-20 md:py-32 bg-slate-100 dark:bg-slate-950/40">
-        <div class="container mx-auto px-4 md:px-6">
-            <h2 class="text-3xl md:text-5xl font-800 text-center mb-16 md:mb-20 tracking-tight" x-text="t[lang].matrixTitle"></h2>
-            <div class="grid md:grid-cols-3 gap-6 md:gap-8">
-                <template x-for="level in t[lang].levels" :key="level.title">
-                    <div class="glass-card p-6 md:p-10 rounded-[30px] md:rounded-[40px] transition group border-b-4 hover:scale-[1.02]" :class="level.border">
-                        <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center mb-6 font-800 text-lg md:text-xl" :class="level.iconBg">
-                            <span x-text="level.id" :class="level.text"></span>
-                        </div>
-                        <h4 class="text-xl md:text-2xl font-800 mb-4" :class="level.text" x-text="level.title"></h4>
-                        <p class="text-sm md:text-base opacity-60 leading-relaxed" x-text="level.desc"></p>
-                    </div>
-                </template>
-            </div>
-        </div>
+    <!-- Logos / trust strip -->
+    <section class="strip">
+      <div class="container strip__inner">
+        <div class="strip__item">🔒 Տվյալներ՝ SQLite/DB</div>
+        <div class="strip__item">🧠 AI խորհուրդներ</div>
+        <div class="strip__item">📊 Վերլուծություն & սովորություններ</div>
+        <div class="strip__item">🛡️ Guardrails (BLOCK/WARN)</div>
+      </div>
     </section>
 
-    <footer class="py-12 md:py-20 border-t border-white/5 text-center">
-        <div class="container mx-auto px-4">
-            <p class="text-sm md:text-base opacity-50 mb-4" x-text="t[lang].footerDesc"></p>
-            <div class="flex justify-center space-x-6 mb-8 opacity-60">
-                <a href="https://t.me/mardrisk_bot" class="hover:text-brand-primary transition text-xl"><i class="fa-brands fa-telegram"> </i></a>
-                <a href="#" class="hover:text-brand-primary transition text-xl"><i class="fa-brands fa-x-twitter"></i></a>
-            </div>
-            <p class="text-[10px] md:text-xs opacity-30">© 2026 MardRisk Systems. Powered by SmartContentAI.</p>
+    <!-- Features -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">Հնարավորություններ</h2>
+          <p class="section__desc">Ամեն ինչ՝ պարզ, արագ և “պրոֆեսիոնալ” UX-ով։</p>
         </div>
-    </footer>
 
-    <script src="script.js">
-   
-    </script>
+        <div class="grid3">
+          <article class="card">
+            <div class="card__icon">📉</div>
+            <h3 class="card__title">Risk Score</h3>
+            <p class="card__text">
+              0–100 սքոր՝ ըստ եկամուտ/ծախս/պարտք/խնայողություն։ Ստանում ես նաև վիճակ՝ Կայուն / Ռիսկային / Վտանգավոր։
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">💸</div>
+            <h3 class="card__title">Ծախսերի գրանցում</h3>
+            <p class="card__text">
+              Արագ ավելացնում ես ծախսերը (գումար + կատեգորիա) ու ստանում 30 օրվա ամփոփում։
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">🧠</div>
+            <h3 class="card__title">AI խորհուրդներ</h3>
+            <p class="card__text">
+              Կարճ ու կոնկրետ քայլեր՝ այս շաբաթ ինչ անել, ինչ սովորություն դադարեցնել և ինչով փոխարինել։
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">🛒</div>
+            <h3 class="card__title">Գնումների գնահատում</h3>
+            <p class="card__text">
+              /buy կամ «Պլանավորել Գնում» — բոտը գնահատում է՝ ALLOW / WARN / BLOCK՝ հիմնված տվյալների վրա։
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">🧩</div>
+            <h3 class="card__title">Սովորությունների վերլուծություն</h3>
+            <p class="card__text">
+              Տեսնում ես՝ որ կատեգորիան է “քաշում” բյուջեն ու ստանում լուծումներ՝ ինչպես կրճատել։
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card__icon">⚙️</div>
+            <h3 class="card__title">Անվտանգ մոտեցում</h3>
+            <p class="card__text">
+              Խորհուրդները տեղեկատվական են, չեն խոստանում երաշխիք։ Դու կառավարում ես տվյալները։
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section section--alt" id="how">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">Ինչպես է աշխատում</h2>
+          <p class="section__desc">3 քայլով՝ սկսած 1 րոպեից։</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step__num">1</div>
+            <div class="step__body">
+              <h3 class="step__title">Սեթափ</h3>
+              <p class="step__text">
+                Գրիր <span class="mono">/setup եկամուտ խնայողություն պարտք</span>։
+                Օրինակ՝ <span class="mono">/setup 350000 50000 1200000</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step__num">2</div>
+            <div class="step__body">
+              <h3 class="step__title">Ավելացրու ծախսերը</h3>
+              <p class="step__text">
+                Գրիր՝ <span class="mono">2500 սնունդ</span>, <span class="mono">12000 տրանսպորտ</span>։
+                Բոտը կհաշվի 30 օրվա սումմարը։
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step__num">3</div>
+            <div class="step__body">
+              <h3 class="step__title">Ստացիր Risk Score + guardrails</h3>
+              <p class="step__text">
+                Սեղմիր <span class="mono">🛡️ Ռիսկ Սքոր</span> կամ գրիր <span class="mono">/buy 600000 iPhone 17</span>։
+                Բոտը կտա <b>ALLOW/WARN/BLOCK</b>՝ բացատրությամբ։
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn btn--primary" href="https://t.me/mardriskv2_bot" target="_blank" rel="noopener">Միանալ հիմա</a>
+          <button class="btn btn--ghost" id="copyBotLink">Պատճենել bot հղումը</button>
+          <span class="hint" id="copyHint" aria-live="polite"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guardrails -->
+    <section class="section" id="guard">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">Արգելող համակարգ (Guardrails)</h2>
+          <p class="section__desc">
+            Երբ ռիսկը բարձր է՝ բոտը “չի խրախուսում” վտանգավոր գնումներ։ Փոխարենը տալիս է գործող քայլեր։
+          </p>
+        </div>
+
+        <div class="grid2">
+          <div class="panel">
+            <h3 class="panel__title">BLOCK (⛔)</h3>
+            <p class="panel__text">
+              Եթե <b>Risk Score ≥ 75</b> և գնումը “luxury/ոչ պարտադիր” է, կամ արժեքը մեծ է եկամուտի նկատմամբ,
+              բոտը կկանգնեցնի գնման մտադրությունը։
+            </p>
+            <ul class="list">
+              <li>Պատճառ՝ թվերով (սքոր, հարաբերակցություններ)</li>
+              <li>Առաջարկ՝ պարտք նվազեցնել / բուֆեր հավաքել</li>
+              <li>Ալտերնատիվ՝ ավելի էժան տարբերակ կամ սպասել</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3 class="panel__title">WARN (⚠️)</h3>
+            <p class="panel__text">
+              Եթե սքորը միջին է, կամ խնայողությունը չի ծածկում 1 ամսվա ծախսը՝ բոտը զգուշացնում է,
+              բայց թույլ է տալիս՝ պայմաններով։
+            </p>
+            <ul class="list">
+              <li>Պայման՝ խնայողությունը ≥ 1–2 ամիս ծախս</li>
+              <li>Պայման՝ պարտքի մի մաս փակել</li>
+              <li>Պայման՝ գնումը պլանավորել 3–6 ամսում</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="demo">
+          <div class="demo__left">
+            <h3 class="demo__title">Փորձարկիր “գնումի գնահատում”</h3>
+            <p class="demo__text">Սա կայքում դեմո է՝ ցույց տալու համար ինչպես է աշխատում guardrail UX-ը։</p>
+
+            <div class="form">
+              <label class="label">Ինչ ես ուզում գնել</label>
+              <input class="input" id="demoItem" placeholder="օր․ iPhone 17" value="iPhone 17" />
+
+              <label class="label">Գին (դրամ)</label>
+              <input class="input" id="demoAmount" type="number" min="0" placeholder="օր․ 600000" value="600000" />
+
+              <label class="label">Risk Score (0–100)</label>
+              <input class="input" id="demoRisk" type="range" min="0" max="100" value="82" />
+              <div class="range">
+                <span>0</span>
+                <span id="demoRiskValue" class="mono">82</span>
+                <span>100</span>
+              </div>
+
+              <button class="btn btn--primary btn--full" id="demoBtn">Գնահատել</button>
+            </div>
+          </div>
+
+          <div class="demo__right">
+            <div class="result" id="demoResult">
+              <div class="result__title">Արդյունքը կհայտնվի այստեղ</div>
+              <div class="result__text">Մուտքագրիր տվյալները ու սեղմիր “Գնահատել”։</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--alt" id="faq">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">FAQ</h2>
+          <p class="section__desc">Ամենահաճախ տրվող հարցերը։</p>
+        </div>
+
+        <div class="faq">
+          <details class="faq__item">
+            <summary class="faq__q">Բոտը ֆինանսական խորհրդատվությո՞ւն է տալիս</summary>
+            <div class="faq__a">
+              Տալիս է տեղեկատվական առաջարկներ և քայլեր՝ ըստ քո տվյալների։ Սա չի փոխարինում մասնագետի խորհրդատվությանը։
+            </div>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__q">Ինչպե՞ս է հաշվարկվում Risk Score-ը</summary>
+            <div class="faq__a">
+              Սքորը կառուցվում է եկամուտ/ծախս հարաբերակցությունից, պարտքի բեռից և խնայողության բուֆերից։
+            </div>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__q">Ինչ է նշանակում BLOCK/WARN</summary>
+            <div class="faq__a">
+              BLOCK-ը նշանակում է՝ բարձր ռիսկ + ոչ պարտադիր գնում։ WARN-ը զգուշացում է՝ առաջարկվում է պայմաններով։
+            </div>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__q">Կարո՞ղ եմ ջնջել իմ տվյալները</summary>
+            <div class="faq__a">
+              Այո։ (Հետագայում կարող ես ավելացնել /delete_data հրաման)։
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta" id="cta">
+      <div class="container cta__inner">
+        <div class="cta__content">
+          <h2 class="cta__title">Պատրաստ՞ ես վերահսկել ռիսկդ</h2>
+          <p class="cta__text">
+            Միացիր MardRisk AI-ին Telegram-ում ու սկսիր /setup-ից։
+            1 րոպեում կհասկանաս քո իրական պատկերն ու առաջին քայլերը։
+          </p>
+          <div class="cta__actions">
+            <a class="btn btn--primary" href="https://t.me/mardriskv2_bot" target="_blank" rel="noopener">
+              Միանալ Telegram-ում
+            </a>
+            <a class="btn btn--ghost" href="#top">Վերև</a>
+          </div>
+          <p class="disclaimer">
+            ⚠️ Դիսքլեյմեր․ Տրված խորհուրդները տեղեկատվական են և չեն հանդիսանում պաշտոնական ֆինանսական խորհրդատվություն։
+          </p>
+        </div>
+
+        <div class="cta__card">
+          <div class="mini">
+            <div class="mini__top">
+              <span class="mini__badge">LIVE DEMO UX</span>
+              <span class="mini__pill">Risk Score</span>
+            </div>
+            <div class="mini__meter">
+              <div class="meter">
+                <div class="meter__bar" id="meterBar" style="width:82%"></div>
+              </div>
+              <div class="mini__row">
+                <span class="mini__label">Risk Score</span>
+                <span class="mini__value mono" id="meterValue">82/100</span>
+              </div>
+            </div>
+            <div class="mini__list">
+              <div class="mini__item"><span>✅</span><span>30 օր ծախսերի ամփոփում</span></div>
+              <div class="mini__item"><span>⚠️</span><span>Սովորությունների վերլուծություն</span></div>
+              <div class="mini__item"><span>⛔</span><span>Վտանգավոր գնումների արգելակում</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left">
+        <div class="brand brand--footer">
+          <span class="brand__logo" aria-hidden="true">MR</span>
+          <span class="brand__text">
+            <span class="brand__name">MardRisk AI</span>
+            <span class="brand__tag">Ֆինանսական Ռիսկի Օգնական</span>
+          </span>
+        </div>
+        <p class="footer__note">
+          Կառուցված է՝ SmartContent AI կողմից
+        </p>
+      </div>
+
+      <div class="footer__right">
+        <a class="footer__link" href="#features">Հնարավորություններ</a>
+        <a class="footer__link" href="#how">Ինչպես է աշխատում</a>
+        <a class="footer__link" href="#faq">FAQ</a>
+        <a class="footer__link" href="https://t.me/mardriskv2_bot" target="_blank" rel="noopener">Telegram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
