@@ -1,351 +1,215 @@
-<!doctype html>
-<html lang="hy">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="MardRisk AI — ֆինանսական ռիսկի գնահատում, ծախսերի վերահսկում, AI խորհուրդներ և Premium հաշվետվություններ Telegram-ում։" />
-  <title>MardRiskAI — Smart Financial Risk Management.</title>
-  <link rel="icon" href="assets/logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MardRisk AI — Smart Financial Assistant</title>
+  <meta name="description" content="MardRisk AI helps people understand risk, track goals, review expenses, and receive AI-powered financial guidance." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="container header__inner">
-      <a class="brand" href="#top" aria-label="MardRisk AI">
-        <img class="brand__logo" src="assets/logo.png" alt="MardRisk AI logo" />
-        <div class="brand__text">
-          <div class="brand__name">MardRisk AI</div>
-          <div class="brand__tag" data-i18n="brandTag">Ֆինանսական ռիսկի AI օգնական</div>
+  <div class="bg-blur blur-1"></div>
+  <div class="bg-blur blur-2"></div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">M</div>
+        <div>
+          <div class="brand-title">MardRisk AI</div>
+          <div class="brand-sub">Smart Financial Companion</div>
         </div>
       </a>
 
-      <nav class="nav">
-        <a href="#features" data-i18n="navFeatures">Ֆունկցիաներ</a>
-        <a href="#pricing" data-i18n="navPricing">Գներ</a>
-        <a href="#how" data-i18n="navHow">Ինչպես է աշխատում</a>
-        <a href="#faq" data-i18n="navFaq">ՀՏՀ</a>
+      <button class="nav-toggle" id="navToggle" aria-label="menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html" data-i18n="nav_home">Home</a>
+        <a href="features.html" data-i18n="nav_features">Features</a>
+        <a href="premium.html" data-i18n="nav_premium">Premium</a>
+        <a href="contact.html" data-i18n="nav_contact">Contact</a>
       </nav>
 
-      <div class="header__actions">
-        <div class="lang">
-          <button class="lang__btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
-            <span id="langLabel">Հայ</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </button>
-          <div class="lang__menu" id="langMenu" role="listbox" aria-label="Language">
-            <button role="option" data-lang="hy">Հայերեն</button>
-            <button role="option" data-lang="ru">Русский</button>
-            <button role="option" data-lang="en">English</button>
-          </div>
-        </div>
-
-        <a class="btn btn--ghost" href="#pricing" data-i18n="ctaSeePricing">Տեսնել գները</a>
-        <a class="btn btn--primary" id="ctaTelegramTop" href="#" target="_blank" rel="noopener" data-i18n="ctaOpenBot">Բացել բոտը</a>
-
-        <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
-          <span></span><span></span><span></span>
+      <div class="toolbar">
+        <button class="tool-btn" id="themeBtn" aria-label="theme">
+          <i class="fa-regular fa-moon"></i>
         </button>
+        <select class="lang-select" id="langSelect" aria-label="language">
+          <option value="hy">Հայերեն</option>
+          <option value="ru">Русский</option>
+          <option value="en">English</option>
+        </select>
       </div>
-    </div>
-
-    <div class="mobileNav" id="mobileNav" aria-hidden="true">
-      <a href="#features" data-i18n="navFeatures">Ֆունկցիաներ</a>
-      <a href="#pricing" data-i18n="navPricing">Գներ</a>
-      <a href="#how" data-i18n="navHow">Ինչպես է աշխատում</a>
-      <a href="#faq" data-i18n="navFaq">ՀՏՀ</a>
-      <a class="btn btn--primary" id="ctaTelegramMobile" href="#" target="_blank" rel="noopener" data-i18n="ctaOpenBot">Բացել բոտը</a>
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero__inner">
-        <div class="hero__copy">
-          <div class="pill" data-i18n="pill">Telegram Bot • Free + Premium</div>
-          <h1 data-i18n="heroTitle">Քո ֆինանսական ռիսկը՝ պարզ, հասկանալի, վերահսկելի։</h1>
-          <p class="lead" data-i18n="heroLead">
-            MardRisk AI-ն օգնում է վերահսկել ծախսերը, հաշվել ռիսկ սքորը, զգուշացնել վտանգավոր գնումներից
-            և տալ AI խորհուրդներ՝ հայերեն, ռուսերեն կամ անգլերեն։
-          </p>
-
-          <div class="hero__stats">
-            <div class="stat">
-              <div class="stat__num">10</div>
-              <div class="stat__label" data-i18n="statFreeLimit">Free՝ օրական հարց</div>
-            </div>
-            <div class="stat">
-              <div class="stat__num">∞</div>
-              <div class="stat__label" data-i18n="statPremiumUnlimited">Premium՝ անսահման</div>
-            </div>
-            <div class="stat">
-              <div class="stat__num">PDF</div>
-              <div class="stat__label" data-i18n="statWeeklyPdf">Շաբաթական հաշվետվություն</div>
-            </div>
+  <main>
+    <section class="hero container reveal">
+      <div class="hero-copy">
+        <span class="eyebrow" data-i18n="hero_badge">AI-powered risk analysis and financial planning</span>
+        <h1 data-i18n="hero_title">Build calmer money decisions with a beautiful, human-friendly financial assistant.</h1>
+        <p class="hero-text" data-i18n="hero_text">
+          MardRisk AI helps users track expenses, understand their financial risk score, plan goals, and receive practical AI guidance based on real personal data.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="features.html" data-i18n="hero_cta_primary">Explore features</a>
+          <a class="btn btn-secondary" href="premium.html" data-i18n="hero_cta_secondary">See Premium</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <strong>15</strong>
+            <span data-i18n="stat_free">Free daily actions</span>
           </div>
-
-          <div class="hero__cta">
-            <a class="btn btn--primary btn--lg" id="ctaTelegramHero" href="#" target="_blank" rel="noopener" data-i18n="ctaOpenBot">Բացել բոտը</a>
-            <a class="btn btn--ghost btn--lg" href="#how" data-i18n="ctaHow">Ինչպես է աշխատում</a>
+          <div class="stat-card">
+            <strong>3</strong>
+            <span data-i18n="stat_lang">Languages built in</span>
           </div>
-
-          <div class="hero__note" data-i18n="heroNote">
-            * Բոտը չի հանդիսանում ֆինանսական խորհրդատվության փոխարինում։ Օգտագործիր որպես օգնական։
+          <div class="stat-card">
+            <strong>7 / 30</strong>
+            <span data-i18n="stat_reports">Day reports</span>
           </div>
         </div>
+      </div>
 
-        <div class="hero__card">
-          <div class="card card--glass">
-            <div class="card__top">
-              <div class="avatar">
-                <img src="assets/logo.png" alt="MardRisk AI" />
-              </div>
+      <div class="hero-panel floating-card">
+        <div class="phone-shell">
+          <div class="phone-top">
+            <span></span>
+          </div>
+          <div class="phone-screen">
+            <div class="app-topline">
               <div>
-                <div class="card__title" data-i18n="demoTitle">Live Demo (օրինակ)</div>
-                <div class="card__sub" data-i18n="demoSub">Ռիսկ սքոր + գնումի ստուգում</div>
+                <div class="small muted">MardRisk AI</div>
+                <h3 data-i18n="demo_title">Risk Dashboard</h3>
               </div>
-              <span class="badge" data-i18n="badge">AI</span>
+              <span class="pill success" data-i18n="demo_status">Stable</span>
             </div>
 
-            <div class="chat">
-              <div class="chat__msg chat__msg--user">💸 2500 սնունդ</div>
-              <div class="chat__msg chat__msg--bot" data-i18n="demoBot1">✅ Ծախսը ավելացվեց։</div>
-
-              <div class="chat__msg chat__msg--user">🛒 600000 iPhone 17</div>
-              <div class="chat__msg chat__msg--bot" data-i18n="demoBot2">⛔ BLOCK — Ռիսկը բարձր է, գնումը ոչ պարտադիր է։ Առաջարկ՝ նախ բուֆեր + պարտքի նվազեցում։</div>
-
-              <div class="chat__msg chat__msg--user">🛡️ Ռիսկ սքոր</div>
-              <div class="chat__msg chat__msg--bot" data-i18n="demoBot3">📉 78/100 • Վտանգավոր — Կրճատիր ոչ պարտադիր ծախսերը, կարգավորիր պարտքի պլանը։</div>
+            <div class="risk-ring">
+              <div class="risk-ring-inner">
+                <div class="small muted" data-i18n="demo_risk_label">Risk Score</div>
+                <div class="score">42</div>
+              </div>
             </div>
 
-            <div class="card__actions">
-              <a class="btn btn--primary" id="ctaTelegramCard" href="#" target="_blank" rel="noopener" data-i18n="ctaOpenBot">Բացել բոտը</a>
-              <a class="btn btn--ghost" href="#pricing" data-i18n="ctaSeePricing">Տեսնել գները</a>
+            <div class="mini-grid">
+              <div class="mini-card">
+                <span data-i18n="mini_income">Income</span>
+                <strong>350 000</strong>
+              </div>
+              <div class="mini-card">
+                <span data-i18n="mini_savings">Savings</span>
+                <strong>90 000</strong>
+              </div>
+              <div class="mini-card wide">
+                <span data-i18n="mini_goal">Goal progress</span>
+                <div class="progress"><i style="width:63%"></i></div>
+              </div>
             </div>
-          </div>
 
-          <div class="trust">
-            <span data-i18n="trust1">🔒 Տվյալները պահվում են անվտանգ DB-ում</span>
-            <span data-i18n="trust2">🌍 3 լեզու</span>
-            <span data-i18n="trust3">⚡ Արագ պատասխաններ</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="bgGlow" aria-hidden="true"></div>
-    </section>
-
-    <section id="features" class="section">
-      <div class="container">
-        <div class="section__head">
-          <h2 data-i18n="featuresTitle">Ֆունկցիաներ</h2>
-          <p data-i18n="featuresLead">Free-ը բավարար է սկսելու համար, Premium-ը՝ պրոֆեսիոնալ վերահսկման համար։</p>
-        </div>
-
-        <div class="grid grid--3">
-          <div class="feature">
-            <div class="icon">🛡️</div>
-            <h3 data-i18n="f1Title">Ռիսկ սքոր (0–100)</h3>
-            <p data-i18n="f1Body">Հաշվարկ՝ եկամուտ, պարտք, խնայողություն, ծախսեր։ Ստանում ես նաև վիճակ՝ կայուն/ռիսկային/վտանգավոր։</p>
-          </div>
-
-          <div class="feature">
-            <div class="icon">💸</div>
-            <h3 data-i18n="f2Title">Ծախսերի հաշվառում</h3>
-            <p data-i18n="f2Body">Ավելացրու ծախսերը ըստ կատեգորիաների և ստացիր ամփոփումներ՝ 7/30 օր։</p>
-          </div>
-
-          <div class="feature">
-            <div class="icon">🛒</div>
-            <h3 data-i18n="f3Title">Գնումի ստուգում</h3>
-            <p data-i18n="f3Body">Ուղարկիր «գումար + ապրանք» — բոտը կասի ALLOW/WARN/BLOCK և կբացատրի ինչու։</p>
-          </div>
-
-          <div class="feature">
-            <div class="icon">🧠</div>
-            <h3 data-i18n="f4Title">AI խորհուրդներ</h3>
-            <p data-i18n="f4Body">Ստացիր գործող քայլեր՝ բյուջե, պարտք, խնայողություն, սովորություններ։ 3 լեզվով։</p>
-          </div>
-
-          <div class="feature">
-            <div class="icon">📄</div>
-            <h3 data-i18n="f5Title">Շաբաթական PDF (Premium)</h3>
-            <p data-i18n="f5Body">Ավտոմատ հաշվետվություն՝ ծախսերի ամփոփում, կատեգորիաներ, risk score։</p>
-          </div>
-
-          <div class="feature">
-            <div class="icon">🔔</div>
-            <h3 data-i18n="f6Title">Ծանուցումներ (Premium)</h3>
-            <p data-i18n="f6Body">Երբ risk score-ը բարձր է՝ բոտը տեղեկացնում է և առաջարկում արագ քայլեր։</p>
+            <div class="advice-card">
+              <i class="fa-solid fa-sparkles"></i>
+              <p data-i18n="demo_ai_tip">Reduce impulse purchases this week and redirect part of your extra cash to your main goal.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="pricing" class="section section--alt">
-      <div class="container">
-        <div class="section__head">
-          <h2 data-i18n="pricingTitle">Գներ</h2>
-          <p data-i18n="pricingLead">Սկսիր անվճար, անցիր Premium երբ ուզում ես լիարժեք վերահսկում։</p>
+    <section class="section container reveal">
+      <div class="section-head center">
+        <span class="eyebrow" data-i18n="why_badge">Why MardRisk AI</span>
+        <h2 data-i18n="why_title">Designed like a real modern product, not a simple financial tracker.</h2>
+      </div>
+
+      <div class="feature-grid three">
+        <article class="feature-card">
+          <div class="icon-wrap"><i class="fa-solid fa-shield-heart"></i></div>
+          <h3 data-i18n="why_1_title">Risk-aware guidance</h3>
+          <p data-i18n="why_1_text">The app reviews income, savings, debt, expenses, and goals together to generate more grounded recommendations.</p>
+        </article>
+        <article class="feature-card">
+          <div class="icon-wrap"><i class="fa-solid fa-bullseye"></i></div>
+          <h3 data-i18n="why_2_title">Goal-centered planning</h3>
+          <p data-i18n="why_2_text">Users can create goals, add daily progress, complete targets, and receive motivation when they move forward.</p>
+        </article>
+        <article class="feature-card">
+          <div class="icon-wrap"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h3 data-i18n="why_3_title">Beautiful mobile-first UI</h3>
+          <p data-i18n="why_3_text">A polished interface, dark and light themes, responsive layouts, and three-language support make it feel premium everywhere.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-accent reveal">
+      <div class="container showcase">
+        <div>
+          <span class="eyebrow" data-i18n="showcase_badge">Everything connected</span>
+          <h2 data-i18n="showcase_title">From expense tracking to AI advice, every section speaks the same financial language.</h2>
+          <p data-i18n="showcase_text">MardRisk AI connects profiles, expenses, risk score, purchase checks, goal progress, alerts, and PDF reporting into one smooth experience.</p>
+          <ul class="clean-list">
+            <li><i class="fa-solid fa-check"></i> <span data-i18n="showcase_li_1">Expense summaries and category analysis</span></li>
+            <li><i class="fa-solid fa-check"></i> <span data-i18n="showcase_li_2">AI coach and 30-day planner</span></li>
+            <li><i class="fa-solid fa-check"></i> <span data-i18n="showcase_li_3">Goal alerts and premium reports</span></li>
+          </ul>
         </div>
-
-        <div class="pricing">
-          <div class="priceCard">
-            <div class="priceCard__top">
-              <h3 data-i18n="freeTitle">Free</h3>
-              <div class="price">
-                <span class="price__num" data-i18n="freePrice">0</span>
-                <span class="price__unit" data-i18n="perMonth">/ ամիս</span>
-              </div>
-              <p class="muted" data-i18n="freeDesc">Սկսելու համար՝ հիմնական ֆունկցիաներով։</p>
-            </div>
-
-            <ul class="list">
-              <li data-i18n="freeL1">Օրական 10 հարց/գործողություն</li>
-              <li data-i18n="freeL2">Ռիսկ սքոր + վիճակ</li>
-              <li data-i18n="freeL3">Ծախսերի ավելացում</li>
-              <li data-i18n="freeL4">AI խորհուրդներ (սահմանափակ)</li>
-              <li data-i18n="freeL5">3 լեզու</li>
-            </ul>
-
-            <a class="btn btn--ghost btn--full" id="ctaTelegramFree" href="#" target="_blank" rel="noopener" data-i18n="ctaStartFree">Սկսել անվճար</a>
+        <div class="glass-board">
+          <div class="board-row">
+            <span data-i18n="board_1">Expenses</span>
+            <strong>+ AI</strong>
           </div>
-
-          <div class="priceCard priceCard--featured">
-            <div class="ribbon" data-i18n="bestValue">Լավագույնը</div>
-            <div class="priceCard__top">
-              <h3 data-i18n="premiumTitle">Premium</h3>
-              <div class="price">
-                <span class="price__num">4900</span>
-                <span class="price__unit" data-i18n="amdPerMonth">դրամ/ամիս</span>
-              </div>
-              <p class="muted" data-i18n="premiumDesc">Անսահման օգտագործում + PDF + Alerts։</p>
-            </div>
-
-            <ul class="list">
-              <li data-i18n="pL1">Անսահման հարցեր/գործողություն</li>
-              <li data-i18n="pL2">Շաբաթական PDF հաշվետվություն</li>
-              <li data-i18n="pL3">Ռիսկի ավտոմատ ծանուցումներ</li>
-              <li data-i18n="pL4">Խորը AI պլան (7 օր)</li>
-              <li data-i18n="pL5">Renew anytime</li>
-            </ul>
-
-            <a class="btn btn--primary btn--full" id="ctaTelegramPremium" href="#" target="_blank" rel="noopener" data-i18n="ctaBuyPremium">Գնել Premium</a>
-
-            <div class="small muted" data-i18n="paymentNote">
-              Վճարումը կատարվում է Telegram-ի ներսում (Payments)։
-            </div>
+          <div class="board-row">
+            <span data-i18n="board_2">Risk score</span>
+            <strong>42/100</strong>
           </div>
-
-          <div class="priceCard">
-            <div class="priceCard__top">
-              <h3 data-i18n="teamTitle">Business</h3>
-              <div class="price">
-                <span class="price__num" data-i18n="teamPrice">Ըստ պատվերի</span>
-              </div>
-              <p class="muted" data-i18n="teamDesc">Բիզնեսների համար՝ թիմային մուտքեր, custom հաշվետվություններ։</p>
-            </div>
-
-            <ul class="list">
-              <li data-i18n="tL1">Բազմաթիվ օգտատերեր/դերեր</li>
-              <li data-i18n="tL2">Custom ռիսկ կանոններ</li>
-              <li data-i18n="tL3">Integrations (CRM/Sheets)</li>
-              <li data-i18n="tL4">Աջակցություն և onboarding</li>
-            </ul>
-
-            <a class="btn btn--ghost btn--full" href="#faq" data-i18n="ctaContact">Կապվել</a>
+          <div class="board-row">
+            <span data-i18n="board_3">Goals</span>
+            <strong>63%</strong>
+          </div>
+          <div class="board-row">
+            <span data-i18n="board_4">Reports</span>
+            <strong>7 / 30</strong>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="how" class="section">
-      <div class="container">
-        <div class="section__head">
-          <h2 data-i18n="howTitle">Ինչպես է աշխատում</h2>
-          <p data-i18n="howLead">3 պարզ քայլ և սկսում ես վերահսկել ֆինանսները։</p>
+    <section class="section container reveal">
+      <div class="cta-box">
+        <div>
+          <span class="eyebrow" data-i18n="cta_badge">Ready to present the product</span>
+          <h2 data-i18n="cta_title">Launch a modern website for MardRisk AI with confidence.</h2>
+          <p data-i18n="cta_text">This static website is lightweight, responsive, fast to deploy, and easy to adapt for Telegram Mini App or landing-page use.</p>
         </div>
-
-        <div class="steps">
-          <div class="step">
-            <div class="step__num">1</div>
-            <h3 data-i18n="s1Title">Բացիր բոտը</h3>
-            <p data-i18n="s1Body">Սեղմիր “Բացել բոտը” և /start։ Ընտրիր լեզուն։</p>
-          </div>
-          <div class="step">
-            <div class="step__num">2</div>
-            <h3 data-i18n="s2Title">Կարգավորիր տվյալները</h3>
-            <p data-i18n="s2Body">Մուտքագրիր եկամուտ, խնայողություն և պարտք՝ բոտը կսկսի հաշվարկել risk score-ը։</p>
-          </div>
-          <div class="step">
-            <div class="step__num">3</div>
-            <h3 data-i18n="s3Title">Օգտագործիր ֆունկցիաները</h3>
-            <p data-i18n="s3Body">Ավելացրու ծախսեր, ստուգիր գնումներ, ստացիր AI խորհուրդներ։ Premium-ում՝ PDF + Alerts։</p>
-          </div>
-        </div>
-
-        <div class="callout">
-          <div>
-            <h3 data-i18n="calloutTitle">Պատրաստ ես սկսելու՞</h3>
-            <p class="muted" data-i18n="calloutBody">Սկսիր անվճար, իսկ Premium-ը կարող ես միացնել մեկ հպումով՝ Telegram-ի ներսում։</p>
-          </div>
-          <a class="btn btn--primary" id="ctaTelegramBottom" href="#" target="_blank" rel="noopener" data-i18n="ctaOpenBot">Բացել բոտը</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq" class="section section--alt">
-      <div class="container">
-        <div class="section__head">
-          <h2 data-i18n="faqTitle">ՀՏՀ</h2>
-          <p data-i18n="faqLead">Հաճախ տրվող հարցեր։</p>
-        </div>
-
-        <div class="faq">
-          <details>
-            <summary data-i18n="q1">Ի՞նչ տվյալներ են պահվում</summary>
-            <p data-i18n="a1">Պահվում են քո մուտքագրած պրոֆիլը (եկամուտ/խնայողություն/պարտք) և ծախսերը։ Կարող ես ցանկացած պահի չօգտագործել կամ ջնջել DB-ն քո սերվերում։</p>
-          </details>
-          <details>
-            <summary data-i18n="q2">Premium-ը ինչպես է ակտիվանում</summary>
-            <p data-i18n="a2">Telegram Payments-ով վճարելուց հետո Premium-ը ավտոմատ ակտիվանում է, և Premium կոճակները բացվում են հենց բոտում։</p>
-          </details>
-          <details>
-            <summary data-i18n="q3">AMD-ով վճարումը միշտ աշխատո՞ւմ է</summary>
-            <p data-i18n="a3">Կախված է payment provider-ից։ Եթե AMD-ը չի ընդունվում, հնարավոր է USD fallback։ (Տեխնիկական՝ “minor units” multiplier)։</p>
-          </details>
-          <details>
-            <summary data-i18n="q4">Սա ֆինանսական խորհրդատվությո՞ւն է</summary>
-            <p data-i18n="a4">Ոչ։ Սա օգնական գործիք է՝ կրթական/կազմակերպչական նպատակով։ Վերջնական որոշումները կայացնում ես դու։</p>
-          </details>
-        </div>
-
-        <div class="footerCard">
-          <div class="footerCard__left">
-            <div class="brand brand--small">
-              <img class="brand__logo" src="assets/logo.png" alt="MardRisk AI logo" />
-              <div class="brand__text">
-                <div class="brand__name">MardRisk AI</div>
-                <div class="brand__tag" data-i18n="brandTag">Ֆինանսական ռիսկի AI օգնական</div>
-              </div>
-            </div>
-            <div class="small muted" data-i18n="footerNote">
-              © <span id="year"></span> MardRisk AI. All rights reserved by SmartContentAI.
-            </div>
-          </div>
-
-          <div class="footerCard__right">
-            <a class="btn btn--primary" id="ctaTelegramFooter" href="#" target="_blank" rel="noopener" data-i18n="ctaOpenBot">Բացել բոտը</a>
-            <button class="btn btn--ghost" id="copyBotLink" data-i18n="copyLink">Պատճենել բոտի հղումը</button>
-          </div>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="premium.html" data-i18n="cta_btn_1">View Premium</a>
+          <a class="btn btn-secondary" href="contact.html" data-i18n="cta_btn_2">Get in touch</a>
         </div>
       </div>
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <div>
+        <div class="brand-title">MardRisk AI</div>
+        <p data-i18n="footer_text">Financial clarity, smarter decisions, and a product experience people enjoy using.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html" data-i18n="nav_home">Home</a>
+        <a href="features.html" data-i18n="nav_features">Features</a>
+        <a href="premium.html" data-i18n="nav_premium">Premium</a>
+        <a href="contact.html" data-i18n="nav_contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
 </body>
 </html>
-
